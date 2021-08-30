@@ -5,12 +5,11 @@ import { LocalUser } from "../models/local_user";
 @Injectable()
 export class StorageService {
 
-    setLocalUser(obj : LocalUser) {
-        if (obj == null) {
-            localStorage.removeItem(STORAGE_KEYS.localUser);
-        }
-        else {
-            localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(obj));
-        }
+    getLocalUser() : LocalUser {
+        let user = localStorage.getItem(STORAGE_KEYS.localUser);
+        return user == null ? null : JSON.parse(user);
+    }
+    setLocalUser(obj: LocalUser) {
+        obj == null ? localStorage.removeItem(STORAGE_KEYS.localUser) : localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(obj));
     }
 }
