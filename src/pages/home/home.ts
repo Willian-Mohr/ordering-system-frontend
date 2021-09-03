@@ -49,4 +49,7 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
+  singup() {
+    this.navCtrl.push('SingupPage');
+  }
 }
