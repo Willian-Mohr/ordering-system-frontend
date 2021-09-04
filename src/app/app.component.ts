@@ -11,9 +11,9 @@ import { AuthService } from '../services/auth.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: String = 'HomePage';
+  rootPage: string = 'HomePage';
 
-  pages: Array<{ title: string, component: String }>;
+  pages: Array<{ title: string, component: string }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public authService: AuthService) {
     this.initializeApp();
