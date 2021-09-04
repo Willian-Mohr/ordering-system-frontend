@@ -32,7 +32,11 @@ export class CategoriasPage {
       .subscribe(response => {
         this.items = response;
       },
-        error => {});
+        error => { });
+  }
+
+  public showProdutos() {
+    this.navCtrl.push('ProdutosPage');
   }
 
 }
