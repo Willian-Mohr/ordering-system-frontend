@@ -11,7 +11,7 @@ import { EstadoService } from '../../services/domain/estado.service';
   selector: 'page-singup',
   templateUrl: 'singup.html',
 })
-export class SingupPage {
+export class SignupPage {
 
   formGroup: FormGroup;
   estados: EstadoDTO[];

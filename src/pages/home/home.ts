@@ -50,6 +50,6 @@ export class HomePage {
   }
 
   singup() {
-    this.navCtrl.push('SingupPage');
+    this.navCtrl.push('SignupPage');
   }
 }
