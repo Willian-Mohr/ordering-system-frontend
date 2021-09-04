@@ -3,6 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS
 import { Observable } from 'rxjs/Rx'; // IMPORTANTE: IMPORT ATUALIZADO
 import { StorageService } from '../services/storage.service';
 import { AlertController } from 'ionic-angular';
+import { FieldMessage } from '../models/fieldmessage';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -23,16 +24,15 @@ export class ErrorInterceptor implements HttpInterceptor {
                     errorObj = JSON.parse(errorObj);
                 }
 
-                console.log("Erro detectado pelo interceptor:");
-                console.log(errorObj);
-
                 switch (errorObj.status) {
                     case 401:
                         this.handle401();
                         break;
-
                     case 403:
                         this.handler403();
+                        break;
+                    case 422:
+                        this.handler422(errorObj);
                         break;
 
                     default:
@@ -60,6 +60,21 @@ export class ErrorInterceptor implements HttpInterceptor {
     handler403() {
         this.storage.setLocalUser(null);
     }
+
+    handler422(errorObj) {
+        let alert = this.alertCtrl.create({
+            title: 'Erro de validação',
+            message: this.listErrors(errorObj.errors),
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();
+    }
+
     handlerDefaultError(errorObj) {
         let alert = this.alertCtrl.create({
             title: 'Erro ' + errorObj.status + ':' + errorObj.error,
@@ -72,6 +87,15 @@ export class ErrorInterceptor implements HttpInterceptor {
             ]
         });
         alert.present();
+    }
+
+    private listErrors(message: FieldMessage[]): string {
+        let s: string = '';
+        for (var i = 0; i < message.length; i++) {
+            s = s + '<p><strong>' + message[i].fieldName + "</strong>: " + message[i].message + '</p>';
+
+        }
+        return s;
     }
 }
 
