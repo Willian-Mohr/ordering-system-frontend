@@ -7,20 +7,40 @@ import { LocalUser } from "../models/local_user";
 export class StorageService {
 
     getLocalUser(): LocalUser {
-        let user = localStorage.getItem(STORAGE_KEYS.localUser);
-        return user == null ? null : JSON.parse(user);
+        let usr = localStorage.getItem(STORAGE_KEYS.localUser);
+        if (usr == null) {
+            return null;
+        }
+        else {
+            return JSON.parse(usr);
+        }
     }
 
     setLocalUser(obj: LocalUser) {
-        obj == null ? localStorage.removeItem(STORAGE_KEYS.localUser) : localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(obj));
+        if (obj == null) {
+            localStorage.removeItem(STORAGE_KEYS.localUser);
+        }
+        else {
+            localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(obj));
+        }
     }
 
     getCart(): Cart {
-        let user = localStorage.getItem(STORAGE_KEYS.cart);
-        return user == null ? null : JSON.parse(user);
+        let str = localStorage.getItem(STORAGE_KEYS.cart);
+        if (str != null) {
+            return JSON.parse(str);
+        }
+        else {
+            return null;
+        }
     }
 
     setCart(obj: Cart) {
-        obj == null ? localStorage.removeItem(STORAGE_KEYS.cart) : localStorage.setItem(STORAGE_KEYS.cart, JSON.stringify(obj));
+        if (obj != null) {
+            localStorage.setItem(STORAGE_KEYS.cart, JSON.stringify(obj));
+        }
+        else {
+            localStorage.removeItem(STORAGE_KEYS.cart);
+        }
     }
 }
