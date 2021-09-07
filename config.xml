@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.unifcv.sistemapedidosfrontend" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>ordering-system-ionic</name>
+    <name>Sistema de Pedidos</name>
     <description>Projeto de sistema de pedidos para fins acadêmicos</description>
     <author email="willianbmohr@gmail.com" href="Willian Junior Brizola Mohr" />
     <content src="index.html" />
